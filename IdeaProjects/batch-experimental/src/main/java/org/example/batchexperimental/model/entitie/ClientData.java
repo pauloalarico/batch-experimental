@@ -26,4 +26,27 @@ public class ClientData {
     @Enumerated(EnumType.STRING)
     private Seating seating;
     private Double value;
+    private Double taxServiceValue;
+
+    public void setTaxValue() {
+        if(seating.equals(Seating.CAMAROTE)) {
+            this.taxServiceValue = 251.00;
+        }
+
+        if(seating.equals(Seating.VIP)) {
+            this.taxServiceValue = 20.00;
+        }
+
+        if(seating.equals(Seating.PISTA_PREMIUM)) {
+            this.taxServiceValue = 34.40;
+        }
+
+        if(seating.equals(Seating.PISTA)) {
+            this.taxServiceValue = 25.00;
+        }
+
+        if(seating.equals(Seating.ARQUIBANCADA)) {
+            this.taxServiceValue = 12.00;
+        }
+    }
 }

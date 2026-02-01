@@ -22,7 +22,11 @@ public class ClientDataProcessor implements FieldSetMapper<ClientData> {
                 .birthDate(readDate(fieldSet.readString("birthDate")))
                 .artistName(fieldSet.readString("artistName"))
                 .concertDate(readDate(fieldSet.readString("concertDate")))
-                .seating(Seating.valueOf(fieldSet.readString("seating").toUpperCase()))
+                .seating(Seating.valueOf(
+                        fieldSet.readString("seating").contains(" ") ?
+                                fieldSet.readString("seating").replace(" ", "_").toUpperCase()
+                            : fieldSet.readString("seating").toUpperCase()
+                ))
                 .value(toDouble(fieldSet.readString("value")))
                 .build();
     }

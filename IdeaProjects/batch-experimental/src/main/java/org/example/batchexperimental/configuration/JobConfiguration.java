@@ -3,6 +3,7 @@ package org.example.batchexperimental.configuration;
 import lombok.RequiredArgsConstructor;
 import org.example.batchexperimental.model.entitie.ClientData;
 import org.example.batchexperimental.processor.ClientDataProcessor;
+import org.example.batchexperimental.processor.ServiceTaxProcessor;
 import org.example.batchexperimental.utils.CustomSqlParameters;
 import org.springframework.batch.core.job.Job;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -41,6 +42,7 @@ public class JobConfiguration {
         return new StepBuilder("initial-step", jobRepository)
                 .<ClientData, ClientData>chunk(10)
                 .reader(reader())
+                .processor(processor())
                 .writer(writer(dataSource))
                 .build();
     }
@@ -67,5 +69,10 @@ public class JobConfiguration {
                 ).itemSqlParameterSourceProvider(new CustomSqlParameters() {
                 })
                 .build();
+    }
+
+    @Bean
+    public ServiceTaxProcessor processor() {
+        return new ServiceTaxProcessor();
     }
 }
