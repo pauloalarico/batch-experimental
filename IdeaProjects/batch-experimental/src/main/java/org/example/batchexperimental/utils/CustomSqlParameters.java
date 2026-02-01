@@ -18,7 +18,7 @@ public class CustomSqlParameters extends BeanPropertyItemSqlParameterSourceProvi
         params.addValue("concertDate", item.getConcertDate());
         params.addValue("seating", item.getSeating().name());
         params.addValue("value", item.getValue());
-
+        params.addValue("taxServiceValue", item.getTaxServiceValue());
         return params;
     }
 }

@@ -64,10 +64,9 @@ public class JobConfiguration {
         return new JdbcBatchItemWriterBuilder<ClientData>()
                 .dataSource(dataSource)
                 .sql(
-                        "INSERT INTO client_data (id, document_number, name, birth_date, artist_name, concert_date, seating, value)" +
-                                " VALUES(:id, :documentNumber, :name, :birthDate, :artistName, :concertDate, :seating, :value)"
-                ).itemSqlParameterSourceProvider(new CustomSqlParameters() {
-                })
+                        "INSERT INTO client_data (id, document_number, name, birth_date, artist_name, concert_date, seating, value, tax_service_value)" +
+                                " VALUES(:id, :documentNumber, :name, :birthDate, :artistName, :concertDate, :seating, :value, :taxServiceValue)"
+                ).itemSqlParameterSourceProvider(new CustomSqlParameters(){})
                 .build();
     }
 

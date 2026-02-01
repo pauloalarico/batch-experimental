@@ -43,6 +43,5 @@ public class ClientDataProcessor implements FieldSetMapper<ClientData> {
             throw new NullPointerException("Value cannot be null");
         }
         return Double.valueOf(value);
-
     }
 }
