@@ -8,6 +8,7 @@ import org.springframework.batch.infrastructure.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 @Slf4j
@@ -22,11 +23,7 @@ public class ClientDataProcessor implements FieldSetMapper<ClientData> {
                 .birthDate(readDate(fieldSet.readString("birthDate")))
                 .artistName(fieldSet.readString("artistName"))
                 .concertDate(readDate(fieldSet.readString("concertDate")))
-                .seating(Seating.valueOf(
-                        fieldSet.readString("seating").contains(" ") ?
-                                fieldSet.readString("seating").replace(" ", "_").toUpperCase()
-                            : fieldSet.readString("seating").toUpperCase()
-                ))
+                .seating(Seating.valueOf(verify(Objects.requireNonNull(fieldSet.readString("seating")))))
                 .value(toDouble(fieldSet.readString("value")))
                 .build();
     }
@@ -43,5 +40,12 @@ public class ClientDataProcessor implements FieldSetMapper<ClientData> {
             throw new NullPointerException("Value cannot be null");
         }
         return Double.valueOf(value);
+    }
+
+    private String verify (String seat) {
+        if (seat.contains(" ")) {
+            return seat.replace(" ", "_").toUpperCase();
+        }
+        return seat.toUpperCase();
     }
 }
