@@ -21,5 +21,6 @@ app:
   paths:
      value: ${PATH_RESOURCE}
      datasource: ${DATA_SOURCE}
+     destiny: ${PATH_DESTINY}
 
 

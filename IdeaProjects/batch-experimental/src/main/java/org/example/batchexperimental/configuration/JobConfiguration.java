@@ -3,6 +3,7 @@ package org.example.batchexperimental.configuration;
 import lombok.RequiredArgsConstructor;
 import org.example.batchexperimental.model.entitie.ClientData;
 import org.example.batchexperimental.processor.ClientDataProcessor;
+import org.example.batchexperimental.processor.MoveFileProcessor;
 import org.example.batchexperimental.processor.ServiceTaxProcessor;
 import org.example.batchexperimental.utils.CustomSqlParameters;
 import org.springframework.batch.core.job.Job;
@@ -15,6 +16,7 @@ import org.springframework.batch.infrastructure.item.ItemWriter;
 import org.springframework.batch.infrastructure.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.infrastructure.item.file.FlatFileItemReader;
 import org.springframework.batch.infrastructure.item.file.builder.FlatFileItemReaderBuilder;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,9 +32,10 @@ public class JobConfiguration {
     private final DataSource dataSource;
 
     @Bean
-    public Job job(Step initalStep, JobRepository jobRepository) {
+    public Job job(@Qualifier("initialStep") Step initalStep, JobRepository jobRepository) {
         return new JobBuilder("tickets-generator", jobRepository)
                 .start(initalStep)
+                .next(moveFileStep(jobRepository))
                 .incrementer(new RunIdIncrementer())
                 .build();
     }
@@ -73,5 +76,17 @@ public class JobConfiguration {
     @Bean
     public ServiceTaxProcessor processor() {
         return new ServiceTaxProcessor();
+    }
+
+    @Bean
+    public Step moveFileStep(JobRepository jobRepository) {
+        return new StepBuilder("move-file", jobRepository)
+                .tasklet(moveFileProcessor())
+                .build();
+    }
+
+    @Bean
+    public MoveFileProcessor moveFileProcessor() {
+        return new MoveFileProcessor();
     }
 }
