@@ -1,6 +1,6 @@
 package org.example.batchexperimental.utils;
 
-import org.example.batchexperimental.model.entitie.ClientData;
+import org.example.batchexperimental.domain.entitie.ClientData;
 import org.springframework.batch.infrastructure.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;

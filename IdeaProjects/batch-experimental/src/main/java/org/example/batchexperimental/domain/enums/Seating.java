@@ -1,4 +1,4 @@
-package org.example.batchexperimental.model.enums;
+package org.example.batchexperimental.domain.enums;
 
 public enum Seating {
     PISTA,

@@ -1,4 +1,4 @@
-package org.example.batchexperimental.processor;
+package org.example.batchexperimental.infra.batch.processor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.Nullable;

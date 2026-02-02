@@ -1,6 +1,6 @@
-package org.example.batchexperimental.processor;
+package org.example.batchexperimental.infra.batch.processor;
 
-import org.example.batchexperimental.model.entitie.ClientData;
+import org.example.batchexperimental.domain.entitie.ClientData;
 import org.jspecify.annotations.Nullable;
 import org.springframework.batch.infrastructure.item.ItemProcessor;
 

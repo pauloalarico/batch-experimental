@@ -1,11 +1,11 @@
-package org.example.batchexperimental.model.entitie;
+package org.example.batchexperimental.domain.entitie;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.example.batchexperimental.model.enums.Seating;
+import org.example.batchexperimental.domain.enums.Seating;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -17,6 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ClientData {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String documentNumber;
     private String name;
