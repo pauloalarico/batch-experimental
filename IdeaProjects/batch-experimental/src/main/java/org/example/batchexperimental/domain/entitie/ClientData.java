@@ -17,7 +17,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ClientData {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String documentNumber;
     private String name;
