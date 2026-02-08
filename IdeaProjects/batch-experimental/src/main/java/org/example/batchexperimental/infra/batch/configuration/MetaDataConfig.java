@@ -26,9 +26,4 @@ public class MetaDataConfig {
         factory.afterPropertiesSet();
         return factory.getObject();
     }
-
-    @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        return new JpaTransactionManager(entityManagerFactory);
-    }
 }
